@@ -1,3 +1,28 @@
+
+interface Taskinfo {
+    title: string, 
+    completed: boolean
+}
+
+function displayTask(task: Taskinfo): void {
+const taskListElement = document.getElementById("task-list");
+
+
+if(taskListElement) {
+    const taskItem = document.createElement("li");
+    taskItem.textContent = task.title;
+    taskItem.className = "task";
+    if(task.completed) {
+        taskItem.classList.add("completed");
+
+    }
+    taskListElement.appendChild(taskItem)
+}
+}
+
+
+
+
 class Task {
     title: string;
     completed: boolean;
@@ -6,9 +31,20 @@ class Task {
         this.title = title;
         this.completed = completed;
     }
+
+    //Method to mark the task as completed
+    markCompleted(): void {
+        this.completed = true;
+    }
+
+    //Methos to display task details
+    showDetails(): string {
+        return `Task: ${this.title}, Completed: ${this.completed}`;
+        
+    }
 }
 
-export default Task;
+
 
 //Example Usage
 
@@ -16,16 +52,11 @@ const task1 = new Task("Complete Assignment", false);
 console.log(task1)
 
 
-interface Taskinfo {
-    title: string, 
-    completed: boolean
-}
-
-function displayTask(task: Taskinfo): void {
-
-}
 
 //Example usage
 const task1Info: Taskinfo = {
     title: "Complete assignment", completed: false
 }
+task1.showDetails();
+task1.markCompleted();
+task1.showDetails();
